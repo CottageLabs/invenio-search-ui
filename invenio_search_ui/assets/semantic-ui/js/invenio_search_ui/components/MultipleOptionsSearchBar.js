@@ -108,11 +108,11 @@ MultipleOptionsSearchBar.defaultProps = {
 export class MultipleOptionsSearchBarCmp extends Component {
   /** Multiple options searchbar to be wrapped with RSK context
    */
-  onBtnSearchClick = (e, { result }) => {
+  onBtnSearchClick = (e, { data }) => {
+    const { result } = data || {};
     const { queryString, updateQueryState, currentQueryState } = this.props;
     const { defaultOption } = this.props;
-    const { value: url } = result;
-    const destinationURL = url || defaultOption.value;
+    const destinationURL = result?.value || defaultOption.value;
 
     if (window.location.pathname === destinationURL) {
       updateQueryState({ ...currentQueryState, queryString });
